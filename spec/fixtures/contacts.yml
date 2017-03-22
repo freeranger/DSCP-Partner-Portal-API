@@ -3,3 +3,10 @@ stark:
   last_name: "Stark"
   email: "ironman@starkindustries.io"
   phone: 5554443333
+  partner: true
+
+parker:
+  first_name: "Peter"
+  last_name: "Parker"
+  email: "spiderman@starkindustries.io"
+  phone: 5554443333
