@@ -1,0 +1,11 @@
+quake:
+  first_name: "Daisy"
+  last_name: "Johnson"
+  email: "quake@shield.io"
+  password_digest: <%= User.digest('password') %>
+
+hawkeye:
+  first_name: "Clint"
+  last_name: "Barton"
+  email: "hawkeye@shield.io"
+  password_digest: <%= User.digest('password') %>
