@@ -1,6 +1,8 @@
 # DSCP Partner Portal API
 This API will serve the DSCP Partner Portal, a member managment application for the Downtown St. Charles Partnership, a non-profit focused on the economic viability of downtown St. Charles, IL. 
 
+[![Build Status](https://semaphoreci.com/api/v1/freeranger/dscp-partner-portal-api/branches/master/badge.svg)](https://semaphoreci.com/freeranger/dscp-partner-portal-api)
+
 All routes for this application should be protected via JWT, with no public API access.
 
 ## Project Scope
