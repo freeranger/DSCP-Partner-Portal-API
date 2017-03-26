@@ -28,6 +28,8 @@ gem 'knock', '~> 2.1', '>= 2.1.1'
 gem 'rack-cors'
 gem 'faker', '~> 1.7.3'
 
+gem 'json'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -36,8 +38,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'cucumber-rails', :require => false
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver', '~> 3.3'
+  gem 'json_spec'
 end
 
 group :development do
