@@ -37,8 +37,69 @@ Feature: Add Contacts
           { "first_name": "Wally", "last_name": "West", "email": "flash@speedforce.io" }
       """
     Then a 422 status code is returned
+    And the response should be JSON
+    And the JSON should contain:
+      """
+        { "email":["has already been taken"] }
+      """
 
-    Scenario: Add a contact with default values for city, and state
+    
+    Scenario: Add a contact without a first_name
+      Given the client authenticates as x@westchester.ny
+      When the client sends a POST request to /contacts:
+      """
+          { "last_name": "Banner", "email": "hulk@smash.org" }
+      """
+      Then a 422 status code is returned
+      And the response should be JSON
+      And the JSON should contain:
+      """
+          {"first_name":["can't be blank", "is invalid", "is too short (minimum is 2 characters)"]}
+      """
+
+  Scenario: Add a contact without a last_name
+    Given the client authenticates as x@westchester.ny
+    When the client sends a POST request to /contacts:
+      """
+          { "first_name": "Bruce", "email": "hulk@smash.org" }
+      """
+    Then a 422 status code is returned
+    And the response should be JSON
+    And the JSON should contain:
+      """
+        {"last_name":["can't be blank", "is invalid", "is too short (minimum is 2 characters)"]}
+      """
+
+
+  Scenario: Add a contact without an email address
+    Given the client authenticates as x@westchester.ny
+    When the client sends a POST request to /contacts:
+      """
+          { "first_name": "Bruce", "last_name": "Banner" }
+      """
+    Then a 422 status code is returned
+    And the response should be JSON
+    And the JSON should contain:
+      """
+          { "email":["can't be blank", "is invalid"] }
+    """
+
+
+  Scenario: Add a contact with an invalid email address
+    Given the client authenticates as x@westchester.ny
+    When the client sends a POST request to /contacts:
+      """
+          { "first_name": "Bruce", "last_name": "Banner", "email": "xxinvalidxx" }
+      """
+    Then a 422 status code is returned
+    And the response should be JSON
+    And the JSON should contain:
+      """
+          {"email":["is invalid"]}
+      """
+
+
+    Scenario: Adding a contact without city and state populates default values for these fields
       Given the client authenticates as x@westchester.ny
       When the client sends a POST request to /contacts:
       """

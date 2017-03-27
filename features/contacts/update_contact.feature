@@ -40,3 +40,19 @@ Feature: Update Contacts
     Then a 404 status code is returned
 
 
+  Scenario: Update an existing contact with an email already in use
+    Given the client authenticates as x@westchester.ny
+    And the system knows about the following contact:
+      | id  | first_name       | last_name      | email               |
+      | 10  | Peter            | Parker         | spidey@webheads.org |
+      | 11  | Miles            | Morales        | spidey@webheads.com |
+    When the client sends a PUT request to /contacts/11:
+      """
+          { "first_name": "Miles", "last_name": "Morales", "email": "spidey@webheads.org" }
+      """
+    Then a 422 status code is returned
+    And the response should be JSON
+    And the JSON should contain:
+      """
+        { "email":["has already been taken"] }
+      """
