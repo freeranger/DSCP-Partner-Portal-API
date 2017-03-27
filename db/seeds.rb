@@ -1,17 +1,8 @@
-Contact.create!(first_name: "Tony",
-                last_name: "Stark",
-                email: "tony@starkindustries.com",
-                phone: 8005556969,
-                phone_alt: 8004446969,
-                business_name: "Stark Industries",
-                street_address: "429 Stark Blvd.",
-                city: "Mailbu",
-                state: "CA",
-                zip: 90263,
-                website: "starkindustries.com",
-                facebook: "",
-                instagram: "",
-                partner: true )
+User.create!(first_name: "Tony",
+             last_name: "Stark",
+             email: "tony@starkindustries.io",
+             password: "iamironman",
+             password_confirmation: "iamironman")
 
 596.times do |n|
   first_name     = Faker::Name.first_name
