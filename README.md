@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/commitshappen/DSCP-Partner-Portal-API.png?label=ready&title=Ready)](https://waffle.io/commitshappen/DSCP-Partner-Portal-API)
 [![Build Status](https://semaphoreci.com/api/v1/commitshappen/dscp-partner-portal-api/branches/master/shields_badge.svg)](https://semaphoreci.com/commitshappen/dscp-partner-portal-api)
 
 # DSCP Partner Portal API
