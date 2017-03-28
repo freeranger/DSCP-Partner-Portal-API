@@ -25,7 +25,7 @@ class ContactsController < ApplicationController
     if @contact.update(contact_params)
       head :no_content
     else
-      render json: contact.errors, status: :unprocessable_entity
+      render json: @contact.errors, status: :unprocessable_entity
     end
 
   end
