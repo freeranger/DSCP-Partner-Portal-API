@@ -1,10 +1,4 @@
-[![Build Status](https://semaphoreci.com/api/v1/commitshappen/dscp-partner-portal-api/branches/master/shields_badge.svg)](https://semaphoreci.com/commitshappen/dscp-partner-portal-api)
-
-[![Open Issues](https://img.shields.io/github/issues/commitshappen/DSCP-Partner-Portal-API.svg)](https://github.com/commitshappen/DSCP-Partner-Portal-API/issues)
-
-[![Waffle Board](https://img.shields.io/badge/waffle.io-Board-b3d4fc.svg)](https://waffle.io/commitshappen/DSCP-Partner-Portal-API)
-
-[![AgileVentures Slack](https://img.shields.io/badge/AgileVentures-%23downtownstcharles-orange.svg)](https://www.agileventures.org/projects)
+[![Build Status](https://semaphoreci.com/api/v1/commitshappen/dscp-partner-portal-api/branches/master/shields_badge.svg)](https://semaphoreci.com/commitshappen/dscp-partner-portal-api) [![Open Issues](https://img.shields.io/github/issues/commitshappen/DSCP-Partner-Portal-API.svg)](https://github.com/commitshappen/DSCP-Partner-Portal-API/issues) [![Waffle Board](https://img.shields.io/badge/waffle.io-Board-b3d4fc.svg)](https://waffle.io/commitshappen/DSCP-Partner-Portal-API) [![AgileVentures Slack](https://img.shields.io/badge/AgileVentures-%23downtownstcharles-orange.svg)](https://www.agileventures.org/projects)
 
 # DSCP Partner Portal API
 This API will serve the DSCP Partner Portal, a member managment application for the Downtown St. Charles Partnership, a non-profit focused on the economic viability of downtown St. Charles, IL. 
