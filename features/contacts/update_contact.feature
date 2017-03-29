@@ -11,17 +11,19 @@ Feature: Update Contacts
       | id  | first_name       | last_name      | email          |
       | 123 | Bruce            | Banner         | hulk@smash.org |
 
+    And the client authenticates as x@westchester.ny/jeanrules
+
   Scenario: Update a contact (unauthenticated client)
+    Given the client is not authenticated
     When the client sends a PUT request to /contacts/123:
       """
           { "first_name": "David", "last_name": "Banner", "email": "hulk@smash.org" }
       """
     Then a 401 status code is returned
 
-    
-  Scenario: Update an existing contact (authenticated client)
-    Given the client authenticates as x@westchester.ny
-    When the client sends a PUT request to /contacts/123:
+
+  Scenario: Update an existing contact
+    Given the client sends a PUT request to /contacts/123:
       """
           { "first_name": "David", "last_name": "Banner", "email": "hulk@smash.org" }
       """
@@ -32,8 +34,7 @@ Feature: Update Contacts
 
 
   Scenario: Update a non existing contact
-    Given the client authenticates as x@westchester.ny
-    When the client sends a PUT request to /contacts/999:
+    Given the client sends a PUT request to /contacts/999:
       """
           { "first_name": "David", "last_name": "Banner", "email": "hulk@smash.org" }
       """
@@ -41,8 +42,7 @@ Feature: Update Contacts
 
 
   Scenario: Update an existing contact with an email already in use
-    Given the client authenticates as x@westchester.ny
-    And the system knows about the following contact:
+    Given the system knows about the following contact:
       | id  | first_name       | last_name      | email               |
       | 10  | Peter            | Parker         | spidey@webheads.org |
       | 11  | Miles            | Morales        | spidey@webheads.com |

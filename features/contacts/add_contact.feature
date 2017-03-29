@@ -1,4 +1,4 @@
-Feature: Add Contacts
+Feature: Add Contacts (authenticated client)
   In order to manage contacts
   I need to be able to add them.
 
@@ -6,8 +6,11 @@ Feature: Add Contacts
     Given the system knows about the following user:
       | first_name       | last_name      | email                       | password  |
       | Charles          | Xavier         | x@westchester.ny            | jeanrules |
+    And the client authenticates as x@westchester.ny/jeanrules
 
-  Scenario: Add contact (unauthenticated client)
+
+  Scenario: Add contact (unauthenticated)
+    Given the client is not authenticated
     When the client sends a POST request to /contacts:
       """
           { "first_name": "Bruce", "last_name": "Banner", "email": "hulk@smash.org" }
@@ -15,9 +18,8 @@ Feature: Add Contacts
     Then a 401 status code is returned
 
     
-  Scenario: Add a contact (authenticated client)
-    Given the client authenticates as x@westchester.ny
-    When the client sends a POST request to /contacts:
+  Scenario: Add a contact
+    Given the client sends a POST request to /contacts:
       """
           { "first_name": "Bruce", "last_name": "Banner", "email": "hulk@smash.org" }
       """
@@ -31,7 +33,6 @@ Feature: Add Contacts
     Given the system knows about the following contacts:
       | first_name       | last_name      | email               |
       | Barry            | Allen          | flash@speedforce.io |
-    And the client authenticates as x@westchester.ny
     When the client sends a POST request to /contacts:
       """
           { "first_name": "Wally", "last_name": "West", "email": "flash@speedforce.io" }
@@ -45,8 +46,7 @@ Feature: Add Contacts
 
     
     Scenario: Add a contact without a first_name
-      Given the client authenticates as x@westchester.ny
-      When the client sends a POST request to /contacts:
+      Given the client sends a POST request to /contacts:
       """
           { "last_name": "Banner", "email": "hulk@smash.org" }
       """
@@ -58,8 +58,7 @@ Feature: Add Contacts
       """
 
   Scenario: Add a contact without a last_name
-    Given the client authenticates as x@westchester.ny
-    When the client sends a POST request to /contacts:
+    Given the client sends a POST request to /contacts:
       """
           { "first_name": "Bruce", "email": "hulk@smash.org" }
       """
@@ -72,8 +71,7 @@ Feature: Add Contacts
 
 
   Scenario: Add a contact without an email address
-    Given the client authenticates as x@westchester.ny
-    When the client sends a POST request to /contacts:
+    Given the client sends a POST request to /contacts:
       """
           { "first_name": "Bruce", "last_name": "Banner" }
       """
@@ -86,8 +84,7 @@ Feature: Add Contacts
 
 
   Scenario: Add a contact with an invalid email address
-    Given the client authenticates as x@westchester.ny
-    When the client sends a POST request to /contacts:
+    Given the client sends a POST request to /contacts:
       """
           { "first_name": "Bruce", "last_name": "Banner", "email": "xxinvalidxx" }
       """
@@ -100,8 +97,7 @@ Feature: Add Contacts
 
 
     Scenario: Adding a contact without city and state populates default values for these fields
-      Given the client authenticates as x@westchester.ny
-      When the client sends a POST request to /contacts:
+      Given the client sends a POST request to /contacts:
       """
           { "first_name": "Bruce", "last_name": "Banner", "email": "hulk@smash.org" }
       """
@@ -112,8 +108,7 @@ Feature: Add Contacts
 
       
   Scenario: Add a contact with specified values for city and state
-    Given the client authenticates as x@westchester.ny
-    When the client sends a POST request to /contacts:
+    Given the client sends a POST request to /contacts:
       """
           { "first_name": "Diana", "last_name": "Prince", "email": "wonder@woman.io", "city": "Themyscira", "state": "Is" }
       """
