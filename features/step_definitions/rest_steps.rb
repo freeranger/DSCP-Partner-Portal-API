@@ -26,27 +26,30 @@ Then /^the response should be JSON$/ do
   expect(last_response).to be_json
 end
 
-Then /^the JSON(?: response)? should contain:$/ do |json|
+Then /^the JSON(?: response)? should (not)?\s?contain:$/ do |notContain, json|
   expected_item = JSON.parse(json)
   data = JSON.parse(last_response.body)
   # resposne body is an array
-  if (data.kind_of?(Array)) then
+  if data.kind_of?(Array)
     # the json I am looking for is an array
-    if (expected_item.kind_of?(Array)) then
+    if expected_item.kind_of?(Array)
       matched_items = 0
       # For each item in the expected json, see if you find it in the results
       expected_item.each { |e|
         matched_items += (data.select { |item| item.merge(e) == item }).count >= 1 ? 1 : 0
       }
-      expect(matched_items).to be expected_item.length
+      expect(matched_items).to be expected_item.length unless notContain == 'not'
+      expect(matched_items).to eq 0 if notContain == 'not'
     else
       # the json I am looking for is a single object (in an array of results)
       matched_items = data.select { |item| item.merge(expected_item) == item }
-      expect(matched_items.count).to be > 0
+      expect(matched_items.count).to be > 0 unless notContain == 'not'
+      expect(matched_items.count).to eq 0 if notContain == 'not'
     end
   else
     # The json I am looking for is in a single item response
-    expect(data.merge(expected_item)).to eq data
+    expect(data.merge(expected_item)).to eq data unless notContain == 'not'
+    expect(data.merge(expected_item)).to.not eq data if notContain == 'not'
   end
 end
 
