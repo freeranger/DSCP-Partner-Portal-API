@@ -16,4 +16,6 @@ class Contact < ApplicationRecord
   validates      :state, length: { is: 2 }
   validates        :zip, length: { is: 5 }, numericality: { only_integer: true },
                          allow_nil: true
+
+  scope :partners, -> { where(partner: true) }
 end

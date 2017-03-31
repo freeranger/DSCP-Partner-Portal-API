@@ -34,6 +34,11 @@ class ContactsController < ApplicationController
     @contact.destroy
   end
 
+  def partners
+    partners = Contact.partners
+    render json: partners, :except=> [:created_at, :updated_at]
+  end
+
   private
 
     def set_contact

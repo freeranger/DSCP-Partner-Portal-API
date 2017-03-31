@@ -1,4 +1,4 @@
-When(/^the system knows about the following user(?:s)?:$/) do |user|
+When(/^the (?:following user(?:s)? (?:is|are) registered|system knows about the following user):$/) do |user|
   User.create!(user.hashes)
 end
 
