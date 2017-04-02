@@ -28,6 +28,8 @@ gem 'rack-cors'
 
 gem 'json'
 
+gem 'pg_search'
+
 gem "validate_url"
 
 group :development, :test do
