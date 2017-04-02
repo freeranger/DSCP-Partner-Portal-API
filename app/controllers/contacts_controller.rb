@@ -4,7 +4,12 @@ class ContactsController < ApplicationController
   before_action :set_contact_links, only: [:show]
 
   def index
-    contacts = Contact.all.each {| c | set_self_link c }
+    if params[:search]
+      contacts = Contact.search(params[:search])
+    else
+      contacts = Contact.all
+    end
+    contacts.each {| c | set_self_link c }
     render_list_of contacts
   end
 
