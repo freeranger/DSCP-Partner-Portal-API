@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
+  include_context "db_cleanup_each"
   fixtures :contacts
 
   before do
@@ -92,5 +93,13 @@ RSpec.describe Contact, type: :model do
 
     @contact2.partner = true
     expect(@contact2.valid?).to eq(true)
+  end
+
+  it 'should associate a group with a contact' do
+    group = FactoryGirl.create(:group)
+    @contact.groups << group
+    @contact.save
+    contact_group = group.contacts.find(@contact.id)
+    expect(contact_group.id).to eq (@contact.id)
   end
 end

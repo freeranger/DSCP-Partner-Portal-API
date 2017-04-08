@@ -25,7 +25,6 @@ gem 'knock', '~> 2.1', '>= 2.1.1'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
-gem 'faker', '~> 1.7.3'
 
 gem 'json'
 
@@ -34,6 +33,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+  gem 'factory_girl_rails', '~>4.7', '>=4.7.0'
+  gem 'faker', '~> 1.7.3'
 end
 
 group :test do
