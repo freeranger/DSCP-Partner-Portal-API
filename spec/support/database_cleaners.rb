@@ -1,0 +1,18 @@
+require 'database_cleaner'
+
+shared_context "db_cleanup_each" do |ar_strategy=:truncation|
+  before(:all) do
+    DatabaseCleaner[:active_record].strategy = ar_strategy
+    DatabaseCleaner.clean_with(:truncation)
+  end
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+  before(:each) do
+    DatabaseCleaner.start
+  end
+  after(:each) do
+    Capybara.reset_sessions!  if self.class.metadata[:js]
+    DatabaseCleaner.clean
+  end
+end

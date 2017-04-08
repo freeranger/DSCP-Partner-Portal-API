@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315142257) do
+ActiveRecord::Schema.define(version: 20170408141330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,40 @@ ActiveRecord::Schema.define(version: 20170315142257) do
     t.index ["email"], name: "index_contacts_on_email", unique: true, using: :btree
     t.index ["first_name"], name: "index_contacts_on_first_name", using: :btree
     t.index ["last_name"], name: "index_contacts_on_last_name", using: :btree
+  end
+
+  create_table "contacts_groups", id: false, force: :cascade do |t|
+    t.integer "group_id",   null: false
+    t.integer "contact_id", null: false
+    t.index ["contact_id", "group_id"], name: "index_contacts_groups_on_contact_id_and_group_id", using: :btree
+    t.index ["group_id", "contact_id"], name: "index_contacts_groups_on_group_id_and_contact_id", using: :btree
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["name"], name: "index_groups_on_name", using: :btree
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string   "title"
+    t.string   "destination"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "group_id"
+    t.index ["group_id"], name: "index_links_on_group_id", using: :btree
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.index ["group_id"], name: "index_notes_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
