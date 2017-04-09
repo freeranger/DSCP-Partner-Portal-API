@@ -1,4 +1,4 @@
-class Contact < ApplicationRecord
+class Contact < Linkable
   VALID_NAME_REGEX = /[a-zA-Z]/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   before_save { self.email.downcase! }

@@ -4,8 +4,8 @@ class GroupsController < ApplicationController
   before_action :set_group_links, only: [:show]
 
   def index
-    groups = Group.all.each {| g | g.add_link('self', group_path(g)) }
-    render json: groups, :only=> [:name, :description], :methods => :_links
+    groups = Group.all.each {| g | set_self_link g }
+    render json: groups, :only=> [:name,:description], :methods => :_links
   end
 
   def show
@@ -39,15 +39,17 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
-    @group.add_link('self', group_path(@group))
   end
 
   def set_group_links
-    @group.add_link('self', group_path(@group))
+    set_self_link @group
     #@group.add_link('contacts', group_contacts_path(@group))
     #@group.add_link('links', group_links_path(@group))
     #@group.add_link('notes', group_notes_path(@group))
-    puts @group
+  end
+
+  def set_self_link(group)
+    group.add_link('self', group_path(group))
   end
 
   def group_params
