@@ -27,6 +27,6 @@ Feature: Delete Contacts
     And the contact id 123 does not exist
 
 
-  Scenario: Delete an non existing contact (authenticated client)
+  Scenario: Delete an non existing contact
     Given the client sends a DELETE request to /contacts/9999
     Then a 404 status code is returned

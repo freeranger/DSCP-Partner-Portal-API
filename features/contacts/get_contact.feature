@@ -20,7 +20,7 @@ Feature: Get Contacts
     Then a 401 status code is returned
 
 
-  Scenario: Get a contact (authenticated client)
+  Scenario: Get a contact
     Given the client sends a GET request to /contacts/123
     Then a 200 status code is returned
     And the response should be JSON

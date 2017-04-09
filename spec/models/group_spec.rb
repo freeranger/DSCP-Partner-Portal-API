@@ -34,6 +34,12 @@ RSpec.describe Group, type: :model do
     expect(db_group.description).to eq(@group.description)
   end
 
+  it 'should have a unique name' do
+    @group.save
+    group2 = FactoryGirl.build(:group, :name => @group.name)
+    expect(group2.valid?).to eq(false)
+  end
+
   it 'should associate a contact with a group' do
     contact = FactoryGirl.create(:contact)
     @group.contacts << contact
