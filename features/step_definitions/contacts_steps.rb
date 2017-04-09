@@ -3,7 +3,6 @@ When(/^the system knows about the following contact(?:s)?:$/) do |contact|
 end
 
 Then(/^(?:a|the) contact is (?:created|updated) with:$/) do |contacts|
-  puts contacts.hashes
   contacts.hashes.each do |contact|
     expect(Contact.exists?(contact)).to be true
   end

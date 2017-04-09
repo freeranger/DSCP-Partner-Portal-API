@@ -1,4 +1,4 @@
-Feature: List Contacts (authenticated client)
+Feature: List Contacts
   In order to manage contacts
   I need to be able to list them.
 

@@ -31,17 +31,18 @@ gem 'json'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
-  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
-  gem 'factory_girl_rails', '~>4.7', '>=4.7.0'
   gem 'faker', '~> 1.7.3'
 end
 
 group :test do
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'cucumber-rails', :require => false
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver', '~> 3.3'
   gem 'json_spec'
+  gem 'factory_girl_rails', '~>4.7', '>=4.7.0'
+
 end
 
 group :development do

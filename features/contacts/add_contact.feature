@@ -1,4 +1,4 @@
-Feature: Add Contacts (authenticated client)
+Feature: Add Contacts
   In order to manage contacts
   I need to be able to add them.
 
