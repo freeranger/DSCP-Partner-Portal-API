@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
 
   def index
     groups = Group.all.each {| g | g.add_link('self', group_path(g)) }
-    render json: groups, :only=> [:name], :methods => :_links
+    render json: groups, :only=> [:name, :description], :methods => :_links
   end
 
   def show

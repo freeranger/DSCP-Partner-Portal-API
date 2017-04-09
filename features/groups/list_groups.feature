@@ -23,7 +23,7 @@ Feature: List Groups
 
 
   Scenario: List groups
-            Returns group names and self links only
+            Returns group names, descriptions, and self links only
     Given the client sends a GET request to /groups
     Then a 200 status code is returned
     And the response should be JSON
@@ -32,21 +32,19 @@ Feature: List Groups
       """
         [
           { "name": "The Avengers",
+            "description": "Earth's mightiest heroes",
               "_links": {
                 "self" : { "href": "/groups/123" }
               }
           },
           { "name": "The Fantastic Four",
+            "description": "Marvel's first family",
               "_links": {
                 "self" : { "href": "/groups/456" }
               }
            }
         ]
       """
-    And the JSON should not contain:
-    """
-       {"description":"Earth's mightiest heroes"}
-    """
     And the JSON should not contain:
     """
         { "_links": {
