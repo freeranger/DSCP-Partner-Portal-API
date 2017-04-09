@@ -1,14 +1,15 @@
 class ContactsController < ApplicationController
   before_action :authenticate_user
   before_action :set_contact, only: [:show, :update, :destroy]
+  before_action :set_contact_links, only: [:show]
 
   def index
-    contacts = Contact.all
-    render json: contacts, :except=> [:created_at, :updated_at]
+    contacts = Contact.all.each {| c | set_self_link c }
+    render json: contacts, :only=> [:first_name, :last_name, :email, :business_name ], :methods => :_links
   end
 
   def show
-    render json: @contact, :except=> [:created_at, :updated_at]
+    render json: @contact, :except=> [:created_at, :updated_at], :methods => :_links
   end
 
   def create
@@ -43,6 +44,14 @@ class ContactsController < ApplicationController
 
     def set_contact
       @contact = Contact.find(params[:id])
+    end
+
+    def set_contact_links
+      set_self_link @contact
+    end
+
+    def set_self_link(contact)
+      contact.add_link('self', contact_path(contact))
     end
 
     def contact_params

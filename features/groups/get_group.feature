@@ -22,7 +22,7 @@ Feature: Get Group
 
 
   Scenario: Get a group
-            Returns all nam, description, and links to self and related resources
+            Returns name, description, and links to self and related resources
     Given the client sends a GET request to /groups/123
     Then a 200 status code is returned
     And the response should be JSON
