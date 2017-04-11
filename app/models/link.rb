@@ -1,4 +1,4 @@
-class Link < ApplicationRecord
+class Link < Linkable
   validates :title, presence: true, length: { minimum: 2 }
   validates :destination, presence: true, length: { minimum: 12, maximum: 256 }, :url => true
 

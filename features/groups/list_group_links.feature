@@ -45,7 +45,15 @@ Feature: List Links for a Group
     And the JSON should contain:
       """
         [
-          { "id": 456, "title": "The Gamma Bomb Project", "destination": "http://gammabombsrus.mil" },
-          { "id": 789, "title": "X-Men", "destination": "http://xmen.com" }
+          { "title": "The Gamma Bomb Project", "destination": "http://gammabombsrus.mil",
+             "_links": {
+               "self" : { "href": "/groups/123/links/456" }
+            }
+          },
+          { "title": "X-Men", "destination": "http://xmen.com",
+             "_links": {
+               "self" : { "href": "/groups/123/links/789" }
+             }
+           }
         ]
       """
