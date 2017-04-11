@@ -27,9 +27,31 @@ RSpec.describe Link, type: :model do
     expect(@link.valid?).to eq(false)
   end
 
+  it 'should have at least 2 chars in the title' do
+    @link.title = "a"
+    expect(@link.valid?).to eq(false)
+
+    @link.title = "aa"
+    expect(@link.valid?).to eq(true)
+  end
+
   it 'should have a destination' do
     @link.destination = nil
     expect(@link.valid?).to eq(false)
+  end
+
+  it 'should have a valid URL as the destination, between 12 and 256 characters' do
+    @link.destination = "wibble"
+    expect(@link.valid?).to eq(false)
+
+    @link.destination = "http://w.com"
+    expect(@link.valid?).to eq(true)
+
+    @link.destination = "http://www.a" + "a" * 241 + ".com"
+    expect(@link.valid?).to eq(false)
+
+    @link.destination = "http://www.a" + "a" * 240 + ".com"
+    expect(@link.valid?).to eq(true)
   end
 
   it 'should create a new instance in the database' do
