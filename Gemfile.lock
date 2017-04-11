@@ -214,6 +214,9 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    validate_url (1.0.2)
+      activemodel (>= 3.0.0)
+      addressable
     websocket (1.2.4)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
@@ -247,6 +250,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  validate_url
 
 BUNDLED WITH
    1.13.7

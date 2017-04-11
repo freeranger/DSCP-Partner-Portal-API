@@ -55,6 +55,7 @@ Then /^the JSON(?: response)? should (not)?\s?contain:$/ do |notContain, json|
 end
 
 Then /^the JSON(?: response)? should contain exactly:$/ do |json|
+  puts last_response.body
   expect(last_response.body).to include_json(json)
 end
 
@@ -73,6 +74,11 @@ end
 Then(/^the JSON(?: response)? should contain a single (.*)/) do |type|
   data = JSON.parse(last_response.body)
   validate_type(data, type)
+end
+
+And(/^the JSON should have exactly (#{CAPTURE_INT}) ([\w+]+?)(?:s\b|\b)$/) do |count, type|
+  data = JSON.parse(last_response.body)
+  validate_list(data, type, count)
 end
 
 Then(/^the JSON should have at least (#{CAPTURE_INT}) (.*)s/) do |at_least, type|
