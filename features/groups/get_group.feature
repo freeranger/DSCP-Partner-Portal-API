@@ -32,7 +32,8 @@ Feature: Get Group
           { "name": "The Avengers",
             "description": "Earth's mightiest heroes",
               "_links": {
-                "self": { "href": "/groups/123" }
+                "self": { "href": "/groups/123" },
+                "links": { "href": "/groups/123/links" }
               }
           }
       """
