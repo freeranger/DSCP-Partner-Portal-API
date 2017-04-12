@@ -44,7 +44,7 @@ class GroupsController < ApplicationController
   def set_group_links
     set_self_link @group
     #@group.add_link('contacts', group_contacts_path(@group))
-    #@group.add_link('links', group_links_path(@group))
+    @group.add_link('links', group_links_path(@group))
     #@group.add_link('notes', group_notes_path(@group))
   end
 
