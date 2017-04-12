@@ -1,4 +1,4 @@
-[![Build Status](https://semaphoreci.com/api/v1/commitshappen/dscp-partner-portal-api/branches/master/shields_badge.svg)](https://semaphoreci.com/commitshappen/dscp-partner-portal-api) [![Open Issues](https://img.shields.io/github/issues/commitshappen/DSCP-Partner-Portal-API.svg)](https://github.com/commitshappen/DSCP-Partner-Portal-API/issues) [![Waffle Board](https://img.shields.io/badge/waffle.io-Board-b3d4fc.svg)](https://waffle.io/commitshappen/DSCP-Partner-Portal-API) [![AgileVentures Slack](https://img.shields.io/badge/AgileVentures-%23downtownstcharles-orange.svg)](https://www.agileventures.org/projects/dscp-partner-portal)
+[![Build Status](https://semaphoreci.com/api/v1/commitshappen/dscp-partner-portal-api/branches/master/shields_badge.svg)](https://semaphoreci.com/commitshappen/dscp-partner-portal-api) [![Open Issues](https://img.shields.io/github/issues/st-charles/DSCP-Partner-Portal-API.svg)](https://github.com/st-charles/DSCP-Partner-Portal-API/issues) [![Waffle Board](https://img.shields.io/badge/waffle.io-Board-b3d4fc.svg)](https://waffle.io/st-charles/DSCP-Partner-Portal-API) [![AgileVentures Slack](https://img.shields.io/badge/AgileVentures-%23downtownstcharles-orange.svg)](https://www.agileventures.org/projects/dscp-partner-portal)
 
 # DSCP Partner Portal API
 This API will serve the DSCP Partner Portal, a member managment application for the Downtown St. Charles Partnership, a non-profit focused on the economic viability of downtown St. Charles, IL. 
@@ -17,7 +17,7 @@ The API will be consumed by Angular 2. It's yet to be determined as to whether o
 
 
 ## Contributing
-We'd love to have your help! Check out our [Waffle Board](https://waffle.io/commitshappen/DSCP-Partner-Portal-API) to see where the project currently sits and what we're looking for help on. Do you have an idea that we maybe haven't thought of? That's cool too! Submit a ticket and we'll take a look :)
+We'd love to have your help! Check out our [Waffle Board](https://waffle.io/st-charles/DSCP-Partner-Portal-API) to see where the project currently sits and what we're looking for help on. Do you have an idea that we maybe haven't thought of? That's cool too! Submit a ticket and we'll take a look :)
 
 ### Project Setup
 #### Step 1: Clone the project
