@@ -97,3 +97,12 @@ You should get a single contact that looks something like the following:
   "partner": false
 }
 ```
+
+## Opening Issues
+If there's an addition, a potential bug in the code, something that needs updating, or just a question about the project, please feel free to open up a new issue and share it with others. When you do, all we ask is you answer the following questions so that we may best address your issue. Thanks! :)
+* Bug, feature request, or proposal?
+* What is the expected behavior?
+* What is the current behavior?
+* What are the steps to reproduce?
+* What is the use-case or motivation for changing an existing behavior?
+* Is there anything else we should know?
