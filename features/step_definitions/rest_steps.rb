@@ -24,7 +24,6 @@ end
 
 Then /^the response should be JSON$/ do
   expect(last_response).to be_json
-  #puts JSON.parse(last_response.body)
 end
 
 Then /^the JSON(?: response)? should (not)?\s?contain:$/ do |notContain, json|
