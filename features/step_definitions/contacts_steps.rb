@@ -17,6 +17,6 @@ Then(/^(?:a|the) contact is (?:created|updated) with:$/) do |contacts|
   end
 end
 
-Then(/^the contact id (\d+) (does|does not) exist$/) do |id, exists|
-  expect(Contact.exists?(id)).to be (exists == 'does')
+Then(/^the contact id (\d+) (does|still|does not) exist(?:s)?$/) do |id, exists|
+  expect(Contact.exists?(id)).to be (exists != 'does not')
 end

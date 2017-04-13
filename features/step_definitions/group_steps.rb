@@ -21,8 +21,26 @@ Then(/^the group id (\d+) (does|does not) exist$/) do |id, exists|
   expect(Group.exists?(id)).to be (exists == 'does')
 end
 
-When(/^the group contains contact id (\d*)$/) do |contact_id|
-  contact =  Contact.find(contact_id)
-  @group.contacts << contact
-  @group.save
+When(/^the system knows about the following group contacts:$/) do | group_contact|
+  group_contact.hashes.each do | gc |
+    group = Group.find(gc[:group_id])
+    expect(group).not_to be_nil
+    contact = Contact.find(gc[:contact_id])
+    expect(contact).not_to be_nil
+    group.contacts << contact
+    group.save
+  end
+end
+
+And(/^the group contains contact id (\d+)(?: only once)?$/) do |contact_id, once = nil|
+  contact = Contact.find(contact_id)
+  expect(contact).not_to be_nil
+  expect(@group.contacts.exists?(contact.id))
+  expect(@group.contacts.count()).to be 1 unless once.nil?
+end
+
+And(/^the group does not contain contact id (\d+)$/) do |contact_id|
+  contact = Contact.find(contact_id)
+  expect(contact).not_to be_nil
+  expect(@group.contacts.exists?(contact.id)).to be false
 end

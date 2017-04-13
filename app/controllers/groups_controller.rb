@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user
-  before_action :set_group, only: [:show, :update, :destroy]
+  before_action :set_group, only: [:show, :update, :destroy, :add_group_contact, :delete_group_contact, :list_group_contacts]
   before_action :set_group_links, only: [:show]
+  before_action :set_contact, only: [:add_group_contact, :delete_group_contact]
 
   def index
     groups = Group.all.each {| g | set_self_link g }
@@ -35,21 +36,46 @@ class GroupsController < ApplicationController
     @group.destroy
   end
 
+
+  def list_group_contacts
+    contacts = @group.contacts.each {| c | set_contact_self_link c }
+    render json: contacts, :only=> [:first_name, :last_name, :email, :business_name], :methods => :_links
+  end
+
+  def add_group_contact
+    @group.contacts << @contact
+    @group.save!
+    head :created
+  end
+
+  def delete_group_contact
+    @group.contacts.delete @contact
+  end
+
   private
 
   def set_group
     @group = Group.find(params[:id])
   end
 
+  def set_contact
+    @contact = Contact.find(params[:contact_id])
+  end
+
+
   def set_group_links
     set_self_link @group
-    #@group.add_link('contacts', group_contacts_path(@group))
+    @group.add_link('contacts', group_contacts_path(@group))
     @group.add_link('links', group_links_path(@group))
     @group.add_link('notes', group_notes_path(@group))
   end
 
   def set_self_link(group)
     group.add_link('self', group_path(group))
+  end
+
+  def set_contact_self_link(contact)
+    contact.add_link('self', contact_path(contact))
   end
 
   def group_params
