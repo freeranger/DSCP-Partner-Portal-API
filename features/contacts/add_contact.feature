@@ -24,6 +24,7 @@ Feature: Add Contacts
           { "first_name": "Bruce", "last_name": "Banner", "email": "hulk@smash.org" }
       """
     Then a 201 status code is returned
+    And the location header points to the created contact
     And a contact is created with:
       | first_name       | last_name      | email               |
       | Bruce            | Banner         | hulk@smash.org      |

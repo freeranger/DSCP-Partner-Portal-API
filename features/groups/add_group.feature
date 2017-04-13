@@ -24,6 +24,7 @@ Feature: Add Groups
           { "name": "The Avengers", "description": "Earth's mightiest heroes" }
       """
     Then a 201 status code is returned
+    And the location header points to the created group
     And a group is created with:
       | name         | description |
       | The Avengers | Earth's mightiest heroes |
