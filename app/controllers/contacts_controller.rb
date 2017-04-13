@@ -36,8 +36,8 @@ class ContactsController < ApplicationController
   end
 
   def partners
-    partners = Contact.partners
-    render json: partners, :except=> [:created_at, :updated_at]
+    partners = Contact.partners.each {| c | set_self_link c }
+    render json: partners, :only=> [:first_name, :last_name, :email, :business_name ], :methods => :_links
   end
 
   private

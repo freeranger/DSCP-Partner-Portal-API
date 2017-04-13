@@ -8,10 +8,11 @@ Feature: List Partners
       | Charles          | Xavier         | x@westchester.ny            | jeanrules |
 
     And the system knows about the following contacts:
-      | first_name       | last_name      | email                     | partner |
-      | Warren           | Worthington    | angel@w3.org              | true    |
-      | Jessica          | Jones          | jewel@brooklyn.ny         | false   |
-      | Jean             | Grey           | jean@grey.me              | true    |
+      | id | first_name       | last_name      | email                     | business_name          | website      | partner |
+      | 1  | Warren           | Worthington    | angel@w3.org              | Worthington Industries | www.wi.com   | true    |
+      | 2  | Jessica          | Jones          | jewel@brooklyn.ny         | Alias Investigations   | www.jj.com   | false   |
+      | 3  | Jean             | Grey           | jean@grey.me              | Uncanny X-Men R Us     | www.x.org    | true    |
+
     And the client authenticates as x@westchester.ny/jeanrules
 
   Scenario: List partners (unauthenticated)
@@ -27,14 +28,32 @@ Feature: List Partners
     And the JSON should contain:
       """
         [
-          { "first_name": "Warren", "last_name": "Worthington", "email": "angel@w3.org" },
-          { "first_name": "Jean", "last_name": "Grey", "email": "jean@grey.me" }
+          { "first_name": "Warren", "last_name": "Worthington", "email": "angel@w3.org", "business_name": "Worthington Industries",
+            "_links": {
+              "self" : { "href": "/contacts/1" }
+            }
+          },
+          { "first_name": "Jean", "last_name": "Grey", "email": "jean@grey.me", "business_name": "Uncanny X-Men R Us",
+            "_links": {
+              "self" : { "href": "/contacts/3" }
+            }
+          }
         ]
       """
     And the JSON should not contain:
       """
           { "first_name": "Jessica", "last_name": "Jones", "email": "jewel@brooklyn.ny" }
       """
+    And the JSON should not contain:
+    """
+       {"website": "ww.wi.com"}
+
+    """
+    And the JSON should not contain:
+    """
+       {"partner": true }
+
+    """
 
   @wip
   Scenario: List partners when there are none
@@ -45,4 +64,4 @@ Feature: List Partners
       """
           []
       """
-
+    
