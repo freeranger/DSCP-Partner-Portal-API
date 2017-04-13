@@ -7,6 +7,7 @@ When /^the client authenticates as ([^\/]*)\/([^\/]*)$/ do |email, password|
   data = JSON.parse(last_response.body)
   token = data['jwt']
   header "Authorization", "Bearer #{token}"
+  @user = User.find_by(email: email)
 end
 
 When /^the client is not authenticated$/ do

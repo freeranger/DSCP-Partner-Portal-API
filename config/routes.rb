@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :groups do
     #resources :contacts
     resources :links
-    #resources :notes
+    resources :notes
   end
 
   get :partners, :controller => 'contacts', :action => 'partners', :as => 'partners'
