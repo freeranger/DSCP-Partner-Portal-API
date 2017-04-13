@@ -22,6 +22,7 @@ Feature: List Partners
 
 
   Scenario: List partners
+    Returns first_name, last_name, email, business_name and self links only
     Given the client sends a GET request to /partners
     Then a 200 status code is returned
     And the response should be JSON

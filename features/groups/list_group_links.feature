@@ -21,7 +21,7 @@ Feature: List Links for a Group
     Then a 401 status code is returned
 
 
-  Scenario: List groups for a non existing group
+  Scenario: List links for a non existing group
     Given the client sends a GET request to /groups/9999/links
     Then a 404 status code is returned
 
