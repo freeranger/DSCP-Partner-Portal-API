@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
 
   def index
     contacts = Contact.all.each {| c | set_self_link c }
-    render json: contacts, :only=> [:first_name, :last_name, :email, :business_name ], :methods => :_links
+    render_list_of contacts
   end
 
   def show
@@ -37,15 +37,19 @@ class ContactsController < ApplicationController
 
   def partners
     partners = Contact.partners.each {| c | set_self_link c }
-    render json: partners, :only=> [:first_name, :last_name, :email, :business_name ], :methods => :_links
+    render_list_of partners
   end
 
   private
 
+    def render_list_of(contacts)
+      render json: contacts, :only=> [:first_name, :last_name, :email, :business_name ], :methods => :_links
+    end
+
     def set_contact
       @contact = Contact.find(params[:id])
     end
-
+  
     def set_contact_links
       set_self_link @contact
     end

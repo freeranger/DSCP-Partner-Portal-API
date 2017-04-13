@@ -33,6 +33,7 @@ Feature: Get Group
             "description": "Earth's mightiest heroes",
               "_links": {
                 "self": { "href": "/groups/123" },
+                "contacts": { "href": "/groups/123/contacts" },
                 "links": { "href": "/groups/123/links" },
                 "notes": { "href": "/groups/123/notes" }
               }
