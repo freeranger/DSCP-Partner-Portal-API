@@ -141,7 +141,7 @@ Feature: Search Contacts
     And the JSON should contain:
       """
         [
-          { "first_name": "Richard", "last_name": "Jones", "email": "abomb@smash.org", "state": "AZ" }
+          { "first_name": "Richard", "last_name": "Jones", "email": "abomb@smash.org" }
         ]
       """
 
