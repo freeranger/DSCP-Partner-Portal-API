@@ -55,14 +55,3 @@ Feature: List Partners
        {"partner": true }
 
     """
-
-  @wip
-  Scenario: List partners when there are none
-    Given the client sends a GET request to /partners
-    Then a 200 status code is returned
-    And the response should be JSON
-    And the JSON should contain exactly:
-      """
-          []
-      """
-    
