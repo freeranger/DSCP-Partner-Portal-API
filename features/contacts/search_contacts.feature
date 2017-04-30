@@ -9,9 +9,9 @@ Feature: Search Contacts
 
     And the system knows about the following contacts:
       | first_name       | last_name      | email                     | business_name        | street_address               | city      | state | zip   | phone |
-      | Reed             | Richards       | mrfantastic@ff.org        | Fantastic Four       | Madison Avenue               | New York  | NY    | 10019 | 1800444444 |
+      | Reed             | Richards       | mrfantastic@ff.org        | Fantastic Four       | Madison Avenue               | New York  | NY    | 18019 | 1800444444 |
       | Jessica          | Jones          | jewel@brooklyn.ny         | Alias Investigations | 485 W 46th Street            | New York  | NY    | 10036 | 1800555321 |
-      | Richard          | Jones          | abomb@smash.org           | Hulk, Inc            | 7324 E Indian School Road    | Scarsdale | AZ    | 85321 |            |
+      | Richard          | Jones          | abomb@smash.org           | Hulk, Inc            | 7324 E Indian School Road    | Scarsdale | AZ    | 18321 |            |
 
     And the client authenticates as x@westchester.ny/jeanrules
 
@@ -21,6 +21,13 @@ Feature: Search Contacts
     Then a 401 status code is returned
 
 
+  Scenario: Search contacts resulting in no match
+    Given the client sends a GET request to /contacts?search=mxyzptlk@5th.dimension
+    Then a 200 status code is returned
+    And the response should be JSON
+    And the JSON should have exactly no contacts
+
+    
   Scenario: Search contacts matching on last name only
     Given the client sends a GET request to /contacts?search=Jones
     Then a 200 status code is returned
@@ -74,20 +81,21 @@ Feature: Search Contacts
         ]
       """
 
-  @wip
-  # this does not work with pg_search
+
+  Scenario: Search contacts matching on an email address containing with a value
+            pg_search does not support contains matching on email addresses
+    Given the client sends a GET request to /contacts?search=ff
+    Then a 200 status code is returned
+    And the response should be JSON
+    And the JSON should have exactly no contacts
+
+
   Scenario: Search contacts matching on an email address ending with a value
+            pg_search does not support ends with matching on email addresses
     Given the client sends a GET request to /contacts?search=org
     Then a 200 status code is returned
     And the response should be JSON
-    And the JSON should have exactly two contacts
-    And the JSON should contain:
-      """
-        [
-          { "first_name": "Reed", "last_name": "Richards", "email": "mrfantastic@ff.org" },
-          { "first_name": "Richard", "last_name": "Jones", "email": "abomb@smash.org" }
-        ]
-      """
+    And the JSON should have exactly no contacts
 
 
   Scenario: Search contacts matching on business name only
@@ -104,9 +112,20 @@ Feature: Search Contacts
       """
 
 
-  @wip
-  # I don't see how this would work with a number field
-  Scenario: Search contacts matching on phone number
+  Scenario: Search contacts matching on exact phone number
+    Given the client sends a GET request to /contacts?search=1800444444
+    Then a 200 status code is returned
+    And the response should be JSON
+    And the JSON should have exactly one contacts
+    And the JSON should contain:
+      """
+        [
+          { "first_name": "Reed", "last_name": "Richards", "email": "mrfantastic@ff.org" }
+        ]
+      """
+
+
+  Scenario: Search contacts matching on a phone number starting with the supplied value
     Given the client sends a GET request to /contacts?search=1800
     Then a 200 status code is returned
     And the response should be JSON
@@ -118,6 +137,15 @@ Feature: Search Contacts
           { "first_name": "Jessica", "last_name": "Jones", "email": "jewel@brooklyn.ny" }
         ]
       """
+
+
+  Scenario: Search contacts matching on a phone number containing with the supplied value
+            pg_search does not support contains/ends with matching on numbers
+    Given the client sends a GET request to /contacts?search=444
+    Then a 200 status code is returned
+    And the response should be JSON
+    And the JSON should have exactly no contacts
+
 
 
   Scenario: Search contacts matching first name and last name only
@@ -146,7 +174,7 @@ Feature: Search Contacts
       """
 
 
-  Scenario: Search contacts (matching first name and last name)
+  Scenario: Search contacts matching first name and last name
     Given the client sends a GET request to /contacts?search=Richard
     Then a 200 status code is returned
     And the response should be JSON
@@ -159,24 +187,24 @@ Feature: Search Contacts
         ]
       """
 
-  @wip
-  # I don't see how this would work with a number field
-  Scenario: Search contacts (matching zip and phone number)
-    Given the client sends a GET request to /contacts?search=321
+  
+  Scenario: Search contacts matching zip and phone number starting with the supplied value
+    Given the client sends a GET request to /contacts?search=180
     Then a 200 status code is returned
     And the response should be JSON
     And the JSON should have exactly two contacts
     And the JSON should contain:
       """
         [
-          { "first_name": "Richard", "last_name": "Jones", "email": "abomb@smash.org" },
+          { "first_name": "Jessica", "last_name": "Jones", "email": "jewel@brooklyn.ny" },
           { "first_name": "Reed", "last_name": "Richards", "email": "mrfantastic@ff.org" }
         ]
       """
-    
 
-  Scenario: Search contacts resulting in no match
-    Given the client sends a GET request to /contacts?search=mxyzptlk@5th.dimension
+
+  Scenario: Search contacts matching zip and phone number ending with the supplied value
+            pg_search does not support contains/ends with matching on numbers
+    Given the client sends a GET request to /contacts?search=321
     Then a 200 status code is returned
     And the response should be JSON
     And the JSON should have exactly no contacts

@@ -23,11 +23,11 @@ class Contact < Linkable
 
   pg_search_scope :search, :against => {
                                             :first_name => 'A',
-                                            :last_name => 'B',
-                                            :email => 'C',
-                                            :business_name => 'D',
-                                            :street_address => 'D',
-                                            :city => 'D',
+                                            :last_name => 'A',
+                                            :email => 'B',
+                                            :business_name => 'B',
+                                            :street_address => 'C',
+                                            :city => 'C',
                                             :state => 'D',
                                             :zip => 'D',
                                             :phone => 'D',
