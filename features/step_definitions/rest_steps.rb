@@ -80,7 +80,8 @@ And(/^the JSON should have exactly (#{CAPTURE_INT}) ([\w+]+?)(?:s\b|\b)$/) do |c
   validate_list(data, type, count)
 end
 
-Then(/^the JSON should have at least (#{CAPTURE_INT}) (.*)s/) do |at_least, type|
+
+Then(/^the JSON should have at least (#{CAPTURE_INT}) ([\w+]+?)(?:s\b|\b)$/) do |at_least, type|
   data = JSON.parse(last_response.body)
   validate_list(data, type, nil, at_least)
 end
