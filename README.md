@@ -5,7 +5,7 @@ This API will serve the DSCP Partner Portal. This member managment application i
 
 The purpose of this project is to provide the DSCP with an internal application to manage their contacts and Partners (members). It will also allow them to create groups or committees to which they can add and remove contacts from.
 
-Want to contribute to the project? Check out our [contributing](contributing) docs!
+Want to contribute to the project? Check out our [contributing](CONTRIBUTING.md) docs!
 
 ## Project Setup
 #### Step 1: Clone the project
@@ -46,4 +46,4 @@ $ bundle exec rails s -p 3200
 #### Step 7: Making requests (Finally!)
 Since all of the routes are authenticated, you'll want to first "login" so you can make subsequent requests for information. This is done by sending a POST request to the login path ('/login') with correct user credentials. A test user has been setup for things like this with an email of: "tony@starkindustries.io" and a password of "ironman". Let's get started.
 
-For details about the (desired) API endpoints, please checkout the [API Documentation](api_documentation).
+For details about the (desired) API endpoints, please checkout the [API Documentation](API_DOCUMENTATION.md).
