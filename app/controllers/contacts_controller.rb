@@ -29,7 +29,7 @@ class ContactsController < ApplicationController
 
   def update
     if @contact.update(contact_params)
-      head :no_content
+      render json: @contact
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
@@ -53,7 +53,7 @@ class ContactsController < ApplicationController
   private
 
     def render_list_of(contacts)
-      render json: contacts, :only=> [:first_name, :last_name, :email, :business_name ], :methods => :_links
+      render json: contacts, except: [:created_at, :updated_at], methods: :_links
     end
 
     def set_contact

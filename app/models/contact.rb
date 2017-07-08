@@ -15,11 +15,12 @@ class Contact < Linkable
                          allow_nil: true
   validates  :phone_alt, length: { is: 10 }, numericality: { only_integer: true },
                          allow_nil: true
-  validates      :state, length: { is: 2 }
   validates        :zip, length: { is: 5 }, numericality: { only_integer: true },
                          allow_nil: true
 
   has_and_belongs_to_many :groups
+
+  default_scope { order(last_name: :asc, first_name: :asc) }
 
   pg_search_scope :search, :against => {
                                             :first_name => 'A',
