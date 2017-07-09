@@ -22,6 +22,9 @@ class ContactsController < ApplicationController
 
     if @contact.save
       render json: @contact, status: :created, location: @contact
+      ActionCable.server.broadcast 'contacts_channel',
+                            method: 'CREATE',
+                            contact: @contact
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
@@ -30,6 +33,9 @@ class ContactsController < ApplicationController
   def update
     if @contact.update(contact_params)
       render json: @contact
+      ActionCable.server.broadcast 'contacts_channel',
+                            method: 'UPDATE',
+                            contact: @contact
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
@@ -37,7 +43,12 @@ class ContactsController < ApplicationController
   end
 
   def destroy
-    @contact.destroy
+    removed_contact = @contact
+    if @contact.destroy
+      ActionCable.server.broadcast 'contacts_channel',
+                          method: 'DELETE',
+                          contact: removed_contact
+    end
   end
 
   def partners

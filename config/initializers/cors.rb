@@ -6,8 +6,16 @@
 # Read more: https://github.com/cyu/rack-cors
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  frontend_url = 'https://dscp-partner-portal.firebaseapp.com'
+  
   allow do
-    origins 'localhost:4200'
+    origins do |source, env|
+      def valid_origin?
+        return env == 'development' || source == frontend_url
+      end
+
+      return valid_origin? ? true : false
+    end
 
     resource '*',
       headers: :any,
