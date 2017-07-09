@@ -27,7 +27,7 @@ Feature: Update Contacts
       """
           { "first_name": "David", "last_name": "Banner", "email": "hulk@smash.org" }
       """
-    Then a 204 status code is returned
+    Then a 200 status code is returned
     And the contact is updated with:
       | id  | first_name       | last_name      | email          |
       | 123 | David            | Banner         | hulk@smash.org |

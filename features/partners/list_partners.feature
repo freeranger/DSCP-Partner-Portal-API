@@ -29,12 +29,24 @@ Feature: List Partners
     And the JSON should contain:
       """
         [
-          { "first_name": "Warren", "last_name": "Worthington", "email": "angel@w3.org", "business_name": "Worthington Industries",
+          { 
+            "first_name": "Warren", 
+            "last_name": "Worthington", 
+            "email": "angel@w3.org", 
+            "business_name": "Worthington Industries",
+            "website": "www.wi.com",
+            "partner": true,
             "_links": {
               "self" : { "href": "/contacts/1" }
             }
           },
-          { "first_name": "Jean", "last_name": "Grey", "email": "jean@grey.me", "business_name": "Uncanny X-Men R Us",
+          { 
+            "first_name": "Jean", 
+            "last_name": "Grey", 
+            "email": "jean@grey.me", 
+            "business_name": "Uncanny X-Men R Us",
+            "website": "www.x.org",
+            "partner": true,
             "_links": {
               "self" : { "href": "/contacts/3" }
             }
@@ -43,15 +55,14 @@ Feature: List Partners
       """
     And the JSON should not contain:
       """
-          { "first_name": "Jessica", "last_name": "Jones", "email": "jewel@brooklyn.ny" }
+          { 
+            "first_name": "Jessica", 
+            "last_name": "Jones", 
+            "email": "jewel@brooklyn.ny",
+            "website": "www.jj.com",
+            "partner": false,
+            "_links": {
+              "self" : { "href": "/contacts/2" }
+            }
+          }
       """
-    And the JSON should not contain:
-    """
-       {"website": "ww.wi.com"}
-
-    """
-    And the JSON should not contain:
-    """
-       {"partner": true }
-
-    """

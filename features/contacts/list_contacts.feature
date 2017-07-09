@@ -8,9 +8,9 @@ Feature: List Contacts
       | Charles          | Xavier         | x@westchester.ny            | jeanrules |
 
     And the system knows about the following contacts:
-      | id  | first_name       | last_name      | email                     | business_name        | website    |
-      | 123 | Reed             | Richards       | mrfantastic@ff.com        | FF, Inc              | www.ff.us  |
-      | 456 | Jessica          | Jones          | jewel@brooklyn.ny         | Alias Investigations | www.jj.com |
+      | id  | first_name       | last_name      | email                     | business_name        | website    | partner |
+      | 123 | Reed             | Richards       | mrfantastic@ff.com        | FF, Inc              | www.ff.us  | true |
+      | 456 | Jessica          | Jones          | jewel@brooklyn.ny         | Alias Investigations | www.jj.com | false |
 
     And the client authenticates as x@westchester.ny/jeanrules
 
@@ -30,27 +30,29 @@ Feature: List Contacts
     And the JSON should contain:
       """
         [
-          { "first_name": "Reed", "last_name": "Richards", "email": "mrfantastic@ff.com", "business_name": "FF, Inc",
+          { 
+            "first_name": "Reed", 
+            "last_name": "Richards", 
+            "email": "mrfantastic@ff.com", 
+            "business_name": "FF, Inc",
+            "website": "www.ff.us",
+            "partner": true,
             "_links": {
               "self" : { "href": "/contacts/123" }
             }
           },
-          { "first_name": "Jessica", "last_name": "Jones", "email": "jewel@brooklyn.ny", "business_name": "Alias Investigations",
+          { 
+            "first_name": "Jessica", 
+            "last_name": "Jones", 
+            "email": "jewel@brooklyn.ny", 
+            "business_name": "Alias Investigations",
+            "website": "www.jj.com",
+            "partner": false,
             "_links": {
               "self" : { "href": "/contacts/456" }
             }
           }
         ]
       """
-    And the JSON should not contain:
-    """
-       {"website": "www.ff.us"}
-
-    """
-    And the JSON should not contain:
-    """
-       {"website": "www.jj.com"}
-
-    """
 
   
