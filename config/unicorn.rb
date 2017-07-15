@@ -11,11 +11,6 @@ before_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.connection.disconnect!
-
-  if defined?(Redis)
-    Redis.quit
-    Rails.logger.info('Disconnected from Redis')
-  end
 end
 
 after_fork do |server, worker|
@@ -25,9 +20,4 @@ after_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
-
-  if defined?(Redis)
-    Redis = ENV["REDISTOGO_URL"]
-    Rails.logger.info('Connected to Redis')
-  end
 end
