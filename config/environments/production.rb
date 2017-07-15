@@ -75,4 +75,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Web socket config
+  config.web_socket_server_url = "wss://partner-portal-api.herokuapp.com/sockets" 
+  config.action_cable.allowed_request_origins = ['https://partner-portal-api.herokuapp.com', 'http://partner-portal-api.herokuapp.com']
 end
