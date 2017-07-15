@@ -20,6 +20,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt', '~> 1.5', '>= 1.5.6'
 gem 'knock', '~> 2.1', '>= 2.1.1'
 gem 'newrelic_rpm'
+gem 'unicorn'
+gem 'rack-timeout'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
