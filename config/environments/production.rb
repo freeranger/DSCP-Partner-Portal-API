@@ -78,5 +78,8 @@ Rails.application.configure do
 
   # Web socket config
   config.web_socket_server_url = "wss://partner-portal-api.herokuapp.com/sockets" 
-  config.action_cable.allowed_request_origins = ['https://partner-portal-api.herokuapp.com', 'http://partner-portal-api.herokuapp.com']
+  config.action_cable.allowed_request_origins = ['https://partner-portal-api.herokuapp.com', 
+                                      'http://partner-portal-api.herokuapp.com',
+                                      'https://dscp-partner-portal.firebaseapp.com',
+                                      'http://dscp-partner-portal.firebaseapp.com']
 end
