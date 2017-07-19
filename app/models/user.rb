@@ -11,6 +11,7 @@ class User < Linkable
                          uniqueness: { case_sensitive: false }
   has_secure_password
 
+  has_many :contact_notes
   has_many :notes     
 
   def self.digest(string)

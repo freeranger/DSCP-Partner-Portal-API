@@ -18,6 +18,7 @@ class Contact < Linkable
   validates        :zip, length: { is: 5 }, numericality: { only_integer: true },
                          allow_nil: true
 
+  has_many :contact_notes
   has_and_belongs_to_many :groups
 
   default_scope { order(last_name: :asc, first_name: :asc) }
