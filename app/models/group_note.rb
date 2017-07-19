@@ -1,4 +1,4 @@
-class Note < Linkable
+class GroupNote < Linkable
   validates :content, presence: true, length: { minimum: 25 }
   validates_presence_of :user
   validates_presence_of :group

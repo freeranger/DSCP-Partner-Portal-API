@@ -82,11 +82,19 @@ RSpec.describe User, type: :model do
     expect(new_user.password_digest).to_not eq(sample_password)
   end
 
-  it 'should associate a note with a user' do
-    note = FactoryGirl.build(:note, :with_group)
-    @user.notes << note
+  it 'should associate a contact note with a user' do
+    note = FactoryGirl.build(:contact_note, :with_contact)
+    @user.contact_notes << note
     @user.save
-    db_note = Note.find(note.id)
+    db_note = ContactNote.find(note.id)
+    expect(db_note.user_id).to eq (@user.id)
+  end
+
+  it 'should associate a group note with a user' do
+    note = FactoryGirl.build(:group_note, :with_group)
+    @user.group_notes << note
+    @user.save
+    db_note = GroupNote.find(note.id)
     expect(db_note.user_id).to eq (@user.id)
   end
 end

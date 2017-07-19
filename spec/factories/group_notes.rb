@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :note do
+  factory :group_note do
     content    { Faker::Lorem.paragraphs }
 
     trait :with_user do

@@ -33,12 +33,12 @@ RSpec.describe ContactNote, type: :model do
   end
 
   it 'should have a user' do
-    @note  = FactoryGirl.build(:note)
+    @note  = FactoryGirl.build(:contact_note)
     expect(@note.valid?).to eq(false)
   end
 
   it 'should have a contact' do
-    @note  = FactoryGirl.build(:note, :user => @user)
+    @note  = FactoryGirl.build(:contact_note, :user => @user)
     expect(@note.valid?).to eq(false)
   end
 

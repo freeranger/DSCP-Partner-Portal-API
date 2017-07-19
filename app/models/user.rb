@@ -12,7 +12,7 @@ class User < Linkable
   has_secure_password
 
   has_many :contact_notes
-  has_many :notes     
+  has_many :group_notes     
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
