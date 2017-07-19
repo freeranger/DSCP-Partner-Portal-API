@@ -10,7 +10,7 @@ class ContactNotesController < ApplicationController
 
   # GET /contact_notes/1
   def show
-    render json: @contact_note
+    render json: @contact_note, include: { user: { only: [:first_name, :last_name, :id] } }
   end
 
   # POST /contact_notes
